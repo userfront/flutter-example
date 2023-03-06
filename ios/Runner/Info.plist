@@ -47,6 +47,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- Entries for deep linking -->
+	<!-- Use these if not using flutter_web_auth library. -->
+	<!-- flutter_web_auth does not require these -->
 	<key>FlutterDeepLinkingEnabled</key>
 	<true/>
 	<key>CFBundleURLTypes</key>
@@ -54,8 +57,8 @@
 			<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<!-- <key>CFBundleURLName</key>
-			<string>userfront-flutter-demo.com</string> -->
+			<key>CFBundleURLName</key>
+			<string>userfront-flutter-demo.com</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 			<string>userfront-flutter-demo</string>

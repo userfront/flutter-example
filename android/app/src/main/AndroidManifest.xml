@@ -25,12 +25,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <!-- Deep linking -->
+            <!-- Use this if implementing deep linking yourself -->
             <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+                <!-- This sets up a custom protocol deep link like userfront-flutter-demo://app/login -->
                 <data android:scheme="userfront-flutter-demo"/>
+                <!-- This sets up a custom link, where the OS will redirect https://userfront-flutter-demo.com/ to your app -->
                 <!-- <data android:scheme="uf-flutter-demo" android:host="userfront-flutter-demo.com" /> -->
                 <!-- <data android:scheme="https" /> -->
             </intent-filter>
@@ -40,6 +43,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- Settings for the flutter_web_auth library -->
+        <!-- Use this instead of the "Deep Linking" section above if using flutter_web_auth -->
         <uses-permission android:name="android.permission.INTERNET"/>
         <activity android:name="com.linusu.flutter_web_auth.CallbackActivity" android:exported="true">
             <intent-filter android:label="flutter_web_auth">
