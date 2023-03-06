@@ -1,1 +1,1 @@
-Blank README
+Userfront Flutter library example app
