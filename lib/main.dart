@@ -9,7 +9,7 @@ void main() async {
 
   // Replace with your tenant ID and live domain. The domain here determines
   // whether Userfront is in test mode or live mode.
-  userfront = await Userfront.init("6bg66q7n", "https://www.example.com");
+  userfront = await Userfront.init("5nxgv76b", "https://c70nhc.csb.app");
   runApp(const MyApp());
 }
 
@@ -60,14 +60,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   // libraries, no additional changes are needed for mobile
                   // auth to work.
                   final url =
-                      userfront!.createAuthUrl("https://www.example.com/login");
+                      userfront!.createAuthUrl("https://c70nhc.csb.app/");
 
                   // FlutterWebAuth is a utility library that takes care of
                   // opening the browser and handling the "deep link" back to
                   // the mobile app after login.
                   // https://pub.dev/packages/flutter_web_auth
-                  final result = await FlutterWebAuth.authenticate(
-                      url: url, callbackUrlScheme: "userfront-flutter-demo");
+                  String result = "";
+                  try {
+                    result = await FlutterWebAuth.authenticate(
+                        url: url, callbackUrlScheme: "userfront-flutter-demo");
+                  } on Exception {
+                    print(
+                        'The user cancelled, declined, or failed to authenticate.');
+                  }
 
                   // We need to grab the "authorization code" off the query
                   // parameters of the incoming redirect, to pass to the
@@ -75,6 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   final authorizationCode =
                       Uri.parse(result).queryParameters["authorization_code"];
                   if (authorizationCode == null) {
+                    print(
+                        'Did not receive an authorization code from the server.');
                     return;
                   }
 
@@ -91,8 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   // Userfront Flutter library takes care of tokens and refresh
                   // for us.
                   final self = await userfront!.api.get("/self");
+                  print('Successfully logged in!');
                 },
-                child: const Text("Log in via InAppBrowser")),
+                child: const Text("Log in via InAppBrowser"))
           ],
         ),
       ),
